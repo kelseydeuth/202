@@ -1,3 +1,11 @@
+#
+#Kelsey Deuth
+#
+#04/10/19
+#
+#Section 12
+#Purpose: To reach an equal number of 42 bears
+
 def bears(n):
     if n == 42:
         return True

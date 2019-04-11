@@ -1,3 +1,11 @@
+#
+#Kelsey Deuth
+#
+#04/10/19
+#
+#Section 12
+#Purpose: returns a string representing a number in a different base system
+
 
 def convert(num, b):
     """Recursive function that returns a string representing num in the base b"""
