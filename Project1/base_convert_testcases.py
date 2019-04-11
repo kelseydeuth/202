@@ -4,6 +4,9 @@ from base_convert import *
 
 class TestBaseConvert(unittest.TestCase):
 
+    def test_base0(self):
+        self.assertEqual(convert(10, 0), "0")
+
     def test_base2(self):
         self.assertEqual(convert(45, 2), "101101")
 
@@ -11,7 +14,7 @@ class TestBaseConvert(unittest.TestCase):
         self.assertEqual(convert(30, 4), "132")
 
     def test_base16(self):
-        self.assertEqual(convert(316, 16), "13C")
+        self.assertEqual(convert(316, 16), "13C") #tests involving a letter
 
 
 if __name__ == "__main__":

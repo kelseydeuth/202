@@ -11,6 +11,8 @@ def convert(num, b):
     """Recursive function that returns a string representing num in the base b"""
     alphabet = ["A", "B", "C", "D", "E", "F"]
     n = 0
+    if b == 0:
+        return str(b)
     quo = num // b
     rem = num % b
     if quo == 0:
@@ -20,4 +22,5 @@ def convert(num, b):
             n = n + 1
         rem = alphabet[n]
     return str(convert(quo, b)) + str(rem)
+
 
