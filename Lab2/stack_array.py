@@ -35,8 +35,10 @@ class Stack:
            If stack is empty when pop is attempted, raises IndexError
            MUST have O(1) performance'''
         if self.num_items != 0:
-            self.num_items += 1
-            return pop(self.items[-1])
+            pop = self.items[self.num_items - 1]
+            self.items[self.num_items - 1] == 1
+            self.num_items -= 1
+            return pop
         raise IndexError
 
     def peek(self):
@@ -44,10 +46,13 @@ class Stack:
            If stack is empty, raises IndexError
            MUST have O(1) performance'''
         if self.num_items != 0:
-            return self.items[-1]
+            return self.items[[self.num_items - 1]]
         raise IndexError
 
     def size(self):
         '''Returns the number of elements currently in the stack, not the capacity
            MUST have O(1) performance'''
         return self.num_items
+
+
+ 
