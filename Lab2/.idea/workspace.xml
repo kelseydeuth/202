@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="855b2459-664a-44ff-ad3a-02f59ab32c2f" name="Default Changelist" comment="" />
+    <list default="true" id="855b2459-664a-44ff-ad3a-02f59ab32c2f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.coverage" beforeDir="false" afterPath="$PROJECT_DIR$/.coverage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stack_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/stack_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stack_linked.py" beforeDir="false" afterPath="$PROJECT_DIR$/stack_linked.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stack_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/stack_tests.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/stack_array.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="150">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -22,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Downloads/stack_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="-384">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -34,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/stack_linked.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+            <state relative-caret-position="474">
+              <caret line="37" selection-end-line="64" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -48,9 +53,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Downloads/stack_tests.py" />
         <option value="$USER_HOME$/Downloads/stack_array.py" />
         <option value="$USER_HOME$/Downloads/stack_linked.py" />
+        <option value="$USER_HOME$/Downloads/stack_tests.py" />
       </list>
     </option>
   </component>
@@ -65,8 +70,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="348" />
-    <option name="y" value="24" />
+    <option name="x" value="519" />
+    <option name="y" value="23" />
     <option name="width" value="1400" />
     <option name="height" value="907" />
   </component>
@@ -138,7 +143,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="348" y="24" width="1400" height="907" extended-state="0" />
+    <frame x="519" y="23" width="1400" height="907" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24945612" />
@@ -164,32 +169,42 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Downloads/stack_linked.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Downloads/stack_linked.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/Downloads/stack_array.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="10" />
+          <line>13</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/stack_array.py">
+    <entry file="file://$USER_HOME$/Downloads/stack_linked.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+        <state relative-caret-position="474">
+          <caret line="37" selection-end-line="64" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/stack_linked.py">
+    <entry file="file://$USER_HOME$/Downloads/stack_array.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+        <state relative-caret-position="150">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/stack_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="-384">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

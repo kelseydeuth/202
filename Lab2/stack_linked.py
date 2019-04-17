@@ -28,31 +28,32 @@ class Stack:
         '''If stack is not full, pushes item on stack. 
            If stack is full when push is attempted, raises IndexError
            MUST have O(1) performance'''
-        if self.capacity == self.num_items:
+        if self.capacity != self.num_items:
+            new = Node(item)
+            new.next = self.head
+            self.head = new
+            self.num_items += 1
+        else:
             raise IndexError
-        new = Node(item)
-        new.next = self.head
-        self.head = new
-        self.num_items += 1
 
     def pop(self): 
         '''If stack is not empty, pops item from stack and returns item.
            If stack is empty when pop is attempted, raises IndexError
            MUST have O(1) performance'''
-        if self.capacity == self.num_items:
-            raise IndexError
+        if self.capacity != self.num_items:
+            pop = self.head.data
+            self.head = self.head.next
+            self.num_items -= 1
+            return pop
         else:
-            new = Node(item)
-            new.next = self.head
-            self.head = new
-            self.num_items += 1
+            raise IndexError
 
     def peek(self):
         '''If stack is not empty, returns next item to be popped (but does not pop the item)
            If stack is empty, raises IndexError
            MUST have O(1) performance'''
         if self.num_items != 0:
-            return self.head
+            return self.head.data
         raise IndexError
 
 
