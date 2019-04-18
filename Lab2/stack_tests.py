@@ -1,9 +1,19 @@
+#
+#Kelsey Deuth
+#
+#04/18/19
+#
+#Lab2
+#Section 11
+#This code provides full test corverage for stack_array and stack_linked
+
+
 import unittest
 
 # Use the imports below to test either your array-based stack
 # or your link-based version
-#from stack_array import Stack
-from stack_linked import Stack
+from stack_array import Stack
+#from stack_linked import Stack
 
 class TestLab2(unittest.TestCase):
 
@@ -39,13 +49,13 @@ class TestLab2(unittest.TestCase):
         stack3.push(5)
         stacktest = Stack(0)
         self.assertEqual(stack3.peek(), 5)
-        #self.assertEqual(stack3.peek(), 6)
-        #self.assertEqual(stack3.pop(), 5)
-        #self.assertEqual(stack3.pop(), 6)
-        #self.assertEqual(stack3.pop(), 7)
         self.assertEqual(stack3.size(), 3)
         self.assertFalse(stack3.is_empty())
         self.assertTrue(stacktest.is_empty())
+        #stackNone = Stack(None)
+        #with self.assertRaises(IndexError):  #checks for None exception
+        #    stackNone.pop()
+
 
 
 if __name__ == '__main__': 

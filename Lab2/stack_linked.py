@@ -1,3 +1,12 @@
+#
+#Kelsey Deuth
+#
+#04/18/19
+#
+#Lab2
+#Section 11
+#This code initializes a linked list data structure
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -40,7 +49,7 @@ class Stack:
         '''If stack is not empty, pops item from stack and returns item.
            If stack is empty when pop is attempted, raises IndexError
            MUST have O(1) performance'''
-        if self.capacity != self.num_items:
+        if self.num_items != 0:
             pop = self.head.data
             self.head = self.head.next
             self.num_items -= 1
@@ -54,7 +63,8 @@ class Stack:
            MUST have O(1) performance'''
         if self.num_items != 0:
             return self.head.data
-        raise IndexError
+        else:
+            raise IndexError
 
 
     def size(self):
