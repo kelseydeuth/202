@@ -36,11 +36,11 @@ class Queue:
     def enqueue(self, item):
         '''If Queue is not full, enqueues (adds) item to Queue 
            If Queue is full when enqueue is attempted, raises IndexError'''
-        if self.num_items == self.capacity:
+        if self.is_full() is True:
             raise IndexError
         else:
             self.items[self.end] = item
-            self.end = (self.end+1) % self.capacity
+            self.end = (self.end + 1) % self.capacity
             self.num_items += 1
 
     def dequeue(self):

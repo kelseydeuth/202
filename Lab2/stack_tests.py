@@ -56,8 +56,6 @@ class TestLab2(unittest.TestCase):
         #with self.assertRaises(IndexError):  #checks for None exception
         #    stackNone.pop()
 
-
-
 if __name__ == '__main__': 
     unittest.main()
 

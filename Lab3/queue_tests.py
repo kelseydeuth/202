@@ -44,17 +44,17 @@ class TestLab1(unittest.TestCase):
             qtest.dequeue()
 
     def test3(self):
-        q3 = Queue(3)
-        q3.enqueue(7)
-        q3.enqueue(6)
-        q3.enqueue(5)
-        qtest = Queue(0)
-        qtest2 = Queue(0)
-        self.assertEqual(q3.size(), 3)
-        self.assertFalse(q3.is_empty())
-        self.assertTrue(qtest.is_empty())
-        with self.assertRaises(IndexError):  # checks for exception
-            qtest2.enqueue(1)
+        b = Queue(3)
+        b.enqueue('does')
+        self.assertFalse(b.is_empty())
+        b.enqueue('this')
+        b.enqueue('work')
+        self.assertTrue(b.is_full())
+        with self.assertRaises(IndexError):
+            b.enqueue('maybe')
+        h = Queue(0)
+        with self.assertRaises(IndexError):
+            h.dequeue()
 
 if __name__ == '__main__':
     unittest.main()

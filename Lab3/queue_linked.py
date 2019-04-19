@@ -35,6 +35,8 @@ class Queue:
         return False
 
     def enqueue(self, item):
+        if self.is_full() is True:
+            raise IndexError
         if self.num_items == 0:
             self.head = Node(item)
             self.tail = self.head
