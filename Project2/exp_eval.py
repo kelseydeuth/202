@@ -1,3 +1,16 @@
+#
+#Kelsey Deuth
+#
+#04/23/19
+#
+#Project2
+#Section 11
+#this code solves prexif, infix, and postfix expressions using stack arrays
+
+
+
+
+
 from stack_array import Stack
 
 # You do not need to change this class
