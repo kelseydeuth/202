@@ -7,9 +7,6 @@
 #Section 11
 #this code tests solutions of prexif, infix, and postfix expressions using stack arrays in exp_eval.py
 
-
-
-
 # Start of unittest - add to completely test functions in exp_eval
 
 import unittest
