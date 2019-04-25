@@ -23,40 +23,38 @@ def postfix_eval(input_str):
     stack = Stack(30)
     ops = ['+', '-', '*', '/', '**']
     for num in input_str:
+        if len(input_str) <= 2 and (num in ops or num in '0123456789'):
+            raise PostfixFormatException("Insufficient operands")
+        if num not in ops and not '0123456789':
+            raise PostfixFormatException("Invalid token")
         if num not in ops:
             stack.push(num)  # pushes value onto stack
-        elif num in ops and stack.size() < 2:
-            raise PostfixFormatException
         else:  # if the element is a operator, pop operands for the operator from stack.
-            num1 = int(stack.pop())
             num2 = int(stack.pop())
+            num1 = int(stack.pop())
             new = do_math(num, num1, num2)  # evaluate the operator and push the result back to the stack
             stack.push(new)
-    error1 = "Insufficient operands"
-    error2 = "Too many operands"
     if stack.size() > 1:
         if stack.peek() in ops:
-            return error1
+            raise PostfixFormatException("Insufficient operands")
         else:
-            return error2
-
-    return stack   # when the expression is ended, the number in the stack is the final answer
+            raise PostfixFormatException("Too many operands")
+    return stack.pop()   # when the expression is ended, the number in the stack is the final answer
 
 
 def do_math(op, num1, num2):
     if op == "+":
-        return num1 + num2
+        return int(num1 + num2)
     elif op == "-":
-        return num1 - num2
+        return int(num1 - num2)
     elif op == "*":
-        return num1 * num2
+        return int(num1 * num2)
     elif op == "/":
-        return num1 / num2
+        if num2 == 0:
+            raise ValueError
+        return int(num1 / num2)
     else:
-        return num1 ** num2
-
-
-# postfix_eval('5 1 2 + 4 ** + 3 -')
+        return int(num1 ** num2)
 
 
 def infix_to_postfix(input_str):
@@ -108,13 +106,11 @@ def prefix_to_postfix(input_str):
             op1 = op_stack.pop()
             op2 = op_stack.pop()
             n = op1 + op2 + num
-            stack.push(n)
+            op_stack.push(n)
         return op_stack.pop()
 
 
-# prefix_to_postfix('* - 3 / 2 1 - / 4 5 6')
-
-
+print(prefix_to_postfix('* - 3 / 2 1 - / 4 5 6'))
 
 
 
