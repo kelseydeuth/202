@@ -7,7 +7,6 @@
 #Section 11
 #this code solves prexif, infix, and postfix expressions using stack arrays
 
-
 from stack_array import Stack
 
 
@@ -25,13 +24,18 @@ def postfix_eval(input_str):
     input_str = input_str.split(" ")
     stack = Stack(30)
     ops = ['+', '-', '*', '/', '**', '>>', '<<']
-    nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     num_counter = 0
     op_counter = 0
     for num in input_str:
-        if num not in ops and num not in nums:
-            raise PostfixFormatException("Invalid token")
-        if num in nums:
+        if num not in ops:
+            try:
+                if '.' in num:
+                    float(num)
+                else:
+                    int(num)
+            except ValueError:
+                raise PostfixFormatException("Invalid token")
+        if num not in ops:
             num_counter += 1
         if num in ops:
             op_counter += 1
@@ -43,8 +47,8 @@ def postfix_eval(input_str):
         if num not in ops:
             stack.push(num)  # pushes value onto stack
         else:  # if the element is a operator, pop operands for the operator from stack.
-            num2 = int(stack.pop())
-            num1 = int(stack.pop())
+            num2 = float(stack.pop())
+            num1 = float(stack.pop())
             new = do_math(num, num1, num2)  # evaluate the operator and push the result back to the stack
             stack.push(new)
     return float(stack.pop())   # when the expression is ended, the number in the stack is the final answer
@@ -52,17 +56,17 @@ def postfix_eval(input_str):
 
 def do_math(op, num1, num2):
     if op == "+":
-        return int(num1 + num2)
+        return float(num1 + num2)
     elif op == "-":
-        return int(num1 - num2)
+        return float(num1 - num2)
     elif op == "*":
-        return int(num1 * num2)
+        return float(num1 * num2)
     elif op == "/":
         if num2 == 0:
             raise ValueError
-        return int(num1 / num2)
+        return float(num1 / num2)
     elif op == '**':
-        return int(num1 ** num2)
+        return float(num1 ** num2)
     elif op == '>>':
         if isinstance(num1, int) and isinstance(num2, int):
             return int(num1 >> num2)

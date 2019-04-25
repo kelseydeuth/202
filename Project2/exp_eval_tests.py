@@ -7,6 +7,7 @@
 #Section 11
 #this code tests solutions of prexif, infix, and postfix expressions using stack arrays in exp_eval.py
 
+
 # Start of unittest - add to completely test functions in exp_eval
 
 import unittest
@@ -15,6 +16,15 @@ from exp_eval import *
 class test_expressions(unittest.TestCase):
     def test_postfix_eval_01(self):
         self.assertAlmostEqual(postfix_eval("3 5 +"), 8)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 5 +"), 8.5)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 5.5 +"), 9)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("2.5 .5 -"), 2.0)
 
     def test_postfix_eval_02(self):
         try:
