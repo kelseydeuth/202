@@ -53,17 +53,33 @@ class test_expressions(unittest.TestCase):
     def test_prefix_to_postfix(self):
         self.assertEqual(prefix_to_postfix("* - 3 / 2 1 - / 4 5 6"), "3 2 1 / - 4 5 / 6 - *")
 
-    def do_math(self):
+    def test_do_math(self):
         self.assertEqual(do_math('+', 1, 1), 2)
         self.assertEqual(do_math('-', 2, 1), 1)
         self.assertEqual(do_math('*', 2, 1), 2)
         self.assertEqual(do_math('/', 2, 1), 2)
-        self.assertEqual(do_math('/', 2, 0, ValueError))
+        with self.assertRaises(ValueError):  #checks for exception
+            self.assertEqual(do_math('/', 2, 0))
         self.assertEqual(do_math('**', 2, 2), 4)
         self.assertEqual(do_math('>>', 2, 3), 0)
         self.assertEqual(do_math('<<', 2, 3), 16)
-        self.assertEqual(do_math('>>', 2.0, 3.0), "Illegal bit shift operand")
-        self.assertEqual(do_math('<<', 2.0, 3.0), "Illegal bit shift operand")
+        try:
+            do_math('>>', 2.0, 3.0)
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Illegal bit shift operand")
+        try:
+            do_math('<<', 2.0, 3.0)
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Illegal bit shift operand")
+
+    def test1(self):
+        stack1 = Stack(1)
+        stack1.push(2)
+        self.assertFalse(stack1.is_empty())
+        with self.assertRaises(IndexError):  #checks for exception
+            stack1.push(1)
 
     def test2(self):
         stack2 = Stack(5)
