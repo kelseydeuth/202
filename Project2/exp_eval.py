@@ -47,7 +47,7 @@ def postfix_eval(input_str):
             num1 = int(stack.pop())
             new = do_math(num, num1, num2)  # evaluate the operator and push the result back to the stack
             stack.push(new)
-    return stack.pop()   # when the expression is ended, the number in the stack is the final answer
+    return float(stack.pop())   # when the expression is ended, the number in the stack is the final answer
 
 
 def do_math(op, num1, num2):
