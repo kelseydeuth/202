@@ -29,6 +29,11 @@ class test_expressions(unittest.TestCase):
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Insufficient operands")
+        try:
+            postfix_eval("4 4 5 +")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Too many operands")
 
     def test_postfix_eval_04(self):
         try:
@@ -40,9 +45,38 @@ class test_expressions(unittest.TestCase):
     def test_infix_to_postfix_01(self):
         self.assertEqual(infix_to_postfix("6 - 3"), "6 3 -")
         self.assertEqual(infix_to_postfix("6"), "6")
+        self.assertEqual(infix_to_postfix("( 2 + 3 ) / 2"), "2 3 + 2 /")
+        self.assertEqual(infix_to_postfix("( 2 + 4 / 3 ) - 4 ** 2"), "2 4 3 / + 4 2 ** -")
+        self.assertEqual(infix_to_postfix("( 4 / 2 + 3 ) - 4 ** 2"), "4 2 / 3 + 4 2 ** -")
+        self.assertEqual(infix_to_postfix("( 4 / 2 * 3 + 1 ) - 4"), "4 2 / 3 * 1 + 4 -")
         
     def test_prefix_to_postfix(self):
         self.assertEqual(prefix_to_postfix("* - 3 / 2 1 - / 4 5 6"), "3 2 1 / - 4 5 / 6 - *")
+
+    def do_math(self):
+        self.assertEqual(do_math('+', 1, 1), 2)
+        self.assertEqual(do_math('-', 2, 1), 1)
+        self.assertEqual(do_math('*', 2, 1), 2)
+        self.assertEqual(do_math('/', 2, 1), 2)
+        self.assertEqual(do_math('/', 2, 0, ValueError))
+        self.assertEqual(do_math('**', 2, 2), 4)
+        self.assertEqual(do_math('>>', 2, 3), 0)
+        self.assertEqual(do_math('<<', 2, 3), 16)
+        self.assertEqual(do_math('>>', 2.0, 3.0), "Illegal bit shift operand")
+        self.assertEqual(do_math('<<', 2.0, 3.0), "Illegal bit shift operand")
+
+    def test2(self):
+        stack2 = Stack(5)
+        stack2.push(3)
+        stacktest = Stack(0)
+        self.assertEqual(stack2.pop(), 3)
+        with self.assertRaises(IndexError):  #checks for exception
+            stacktest.pop()
+        with self.assertRaises(IndexError):  #checks for exception
+            stacktest.peek()
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

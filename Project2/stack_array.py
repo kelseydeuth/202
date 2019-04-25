@@ -24,12 +24,12 @@ class Stack:
             return True
         return False
 
-    def is_full(self):
+    """def is_full(self):
         '''Returns True if the stack is full, and False otherwise
            MUST have O(1) performance'''
         if self.num_items == self.capacity:
             return True
-        return False
+        return False"""
 
     def push(self, item):
         '''If stack is not full, pushes item on stack. 
