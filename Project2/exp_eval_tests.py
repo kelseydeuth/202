@@ -7,7 +7,6 @@
 #Section 11
 #this code tests solutions of prexif, infix, and postfix expressions using stack arrays in exp_eval.py
 
-
 # Start of unittest - add to completely test functions in exp_eval
 
 import unittest
@@ -31,6 +30,39 @@ class test_expressions(unittest.TestCase):
 
     def test_postfix_eval_01(self):
         self.assertAlmostEqual(postfix_eval("3 1 >>"), 1)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3 1 >>"), 1)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 2 +"), 5.5)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 2 -"), 3.3)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 2 *"), 7)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 2 /"), 1.75)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3.5 2 **"), 12.25)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("2 3.5 +"), 5.5)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3 1.5 -"), 1.5)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("2 2.5 *"), 5)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3 2.5 /"), 1.2)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("1 1.2 **"), 1)
 
     def test_postfix_eval_03(self):
         try:
