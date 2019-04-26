@@ -26,6 +26,19 @@ class test_expressions(unittest.TestCase):
     def test_postfix_eval_01(self):
         self.assertAlmostEqual(postfix_eval("2.5 .5 -"), 2.0)
 
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("1 4 <<"), 16)
+
+    def test_postfix_eval_01(self):
+        self.assertAlmostEqual(postfix_eval("3 1 >>"), 1)
+
+    def test_postfix_eval_03(self):
+        try:
+            postfix_eval("3.5 1 >>")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Illegal bit shift operand")
+
     def test_postfix_eval_02(self):
         try:
             postfix_eval("blah")
@@ -71,15 +84,15 @@ class test_expressions(unittest.TestCase):
         with self.assertRaises(ValueError):  #checks for exception
             self.assertEqual(do_math('/', 2, 0))
         self.assertEqual(do_math('**', 2, 2), 4)
-        self.assertEqual(do_math('>>', 2, 3), 0)
-        self.assertEqual(do_math('<<', 2, 3), 16)
+        self.assertEqual(do_math('>>', 2, 3), 0.0)
+        self.assertEqual(do_math('<<', 2, 3), 16.0)
         try:
-            do_math('>>', 2.0, 3.0)
+            do_math('>>', 2.5, 3.0)
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Illegal bit shift operand")
         try:
-            do_math('<<', 2.0, 3.0)
+            do_math('<<', 2.0, 3.5)
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Illegal bit shift operand")

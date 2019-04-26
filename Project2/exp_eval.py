@@ -7,6 +7,7 @@
 #Section 11
 #this code solves prexif, infix, and postfix expressions using stack arrays
 
+
 from stack_array import Stack
 
 
@@ -47,8 +48,8 @@ def postfix_eval(input_str):
         if num not in ops:
             stack.push(num)  # pushes value onto stack
         else:  # if the element is a operator, pop operands for the operator from stack.
-            num2 = float(stack.pop())
-            num1 = float(stack.pop())
+            num2 = stack.pop()
+            num1 = stack.pop()
             new = do_math(num, num1, num2)  # evaluate the operator and push the result back to the stack
             stack.push(new)
     return float(stack.pop())   # when the expression is ended, the number in the stack is the final answer
@@ -68,17 +69,23 @@ def do_math(op, num1, num2):
     elif op == '**':
         return float(num1 ** num2)
     elif op == '>>':
-        if isinstance(num1, int) and isinstance(num2, int):
-            return int(num1 >> num2)
-        else:
+        num1 = str(num1)
+        num2 = str(num2)
+        try:
+            num1 = int(num1)
+            num2 = int(num2)
+        except ValueError:
             raise PostfixFormatException("Illegal bit shift operand")
+        return num1 >> num2
     else:
-        if isinstance(num1, int) and isinstance(num2, int):
-            return int(num1 << num2)
-        else:
+        num1 = str(num1)
+        num2 = str(num2)
+        try:
+            num1 = int(num1)
+            num2 = int(num2)
+        except ValueError:
             raise PostfixFormatException("Illegal bit shift operand")
-
-
+        return num1 << num2
 
 
 def infix_to_postfix(input_str):
