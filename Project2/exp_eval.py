@@ -7,7 +7,6 @@
 #Section 11
 #this code solves prexif, infix, and postfix expressions using stack arrays
 
-
 from stack_array import Stack
 
 
@@ -57,16 +56,66 @@ def postfix_eval(input_str):
 
 def do_math(op, num1, num2):
     if op == "+":
+        num1 = str(num1)
+        num2 = str(num2)
+        if '.' in num1:
+            num1 = float(num1)
+        else:
+            num1 = int(num1)
+        if '.' in num2:
+            num2 = float(num2)
+        else:
+            num2 = int(num2)
         return float(num1 + num2)
     elif op == "-":
+        num1 = str(num1)
+        num2 = str(num2)
+        if '.' in num1:
+            num1 = float(num1)
+        else:
+            num1 = int(num1)
+        if '.' in num2:
+            num2 = float(num2)
+        else:
+            num2 = int(num2)
         return float(num1 - num2)
     elif op == "*":
+        num1 = str(num1)
+        num2 = str(num2)
+        if '.' in num1:
+            num1 = float(num1)
+        else:
+            num1 = int(num1)
+        if '.' in num2:
+            num2 = float(num2)
+        else:
+            num2 = int(num2)
         return float(num1 * num2)
     elif op == "/":
+        num1 = str(num1)
+        num2 = str(num2)
+        if '.' in num1:
+            num1 = float(num1)
+        else:
+            num1 = int(num1)
+        if '.' in num2:
+            num2 = float(num2)
+        else:
+            num2 = int(num2)
         if num2 == 0:
             raise ValueError
         return float(num1 / num2)
     elif op == '**':
+        num1 = str(num1)
+        num2 = str(num2)
+        if '.' in num1:
+            num1 = float(num1)
+        else:
+            num1 = int(num1)
+        if '.' in num2:
+            num2 = float(num2)
+        else:
+            num2 = int(num2)
         return float(num1 ** num2)
     elif op == '>>':
         num1 = str(num1)
