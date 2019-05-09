@@ -8,6 +8,7 @@
 #Creates a binary search tree
 #
 
+
 class TreeNode:
     def __init__(self, key, data, left=None, right=None):
         self.key = key
@@ -96,7 +97,10 @@ class BinarySearchTree:
         # if you cannot get it to work, you can still get credit for 
         # the other methods
         # Returns True if the item was deleted, False otherwise
-        pass
+        cur = self.root
+        if cur is None:
+            return False
+        return delete_help(cur, key, None, None)
 
 
 def search_help(n, key):
@@ -131,3 +135,51 @@ def preorder_help(n):
     if n is None:
         return []
     return [n.key] + preorder_help(n.left) + preorder_help(n.right)
+
+
+def delete_help(root, key, prev, side):
+    if root is None:
+        return False
+    if root.key != key:
+        if key < root.key and root.left is not None:
+            return delete_help(root.left, key, root, 'left')
+        elif key > root.key and root.right is not None:
+            return delete_help(root.right, key, root, 'right')
+    elif root.key == key:
+        if root.right is None and root.left is None:
+            if side == 'left':
+                prev.left = None
+            elif side == 'right':
+                prev.right = None
+        elif root.left is None:
+            if side == 'right':
+                prev.right = root.right
+            elif side == 'left':
+                prev.left = root.right
+        elif root.right is None:
+            if side == 'right':
+                prev.right = root.left
+            elif side == 'left':
+                prev.left = root.left
+        elif root.right is not None and root.left is not None:
+            key = min_delete_help(root.right)[0]
+            data = min_delete_help(root.right)[1]
+            if side == 'right':
+                prev.right = TreeNode(key, data, root.left, root.right)
+            elif side == 'left':
+                prev.left = TreeNode(key, data, root.left, root.right)
+        return True
+
+
+def min_delete_help(root):
+    if self.root is None:
+        return None
+    cur = self.root
+    prev = None
+    while cur.left is not None:
+        prev = cur
+        cur = cur.left
+    prev.left = None
+    return cur.key, cur.data
+
+

@@ -8,6 +8,7 @@
 #Tests for a binary search tree
 #
 
+
 import unittest
 from binary_search_tree import *
 
@@ -25,11 +26,12 @@ class TestLab4(unittest.TestCase):
         self.assertEqual(bst.tree_height(), 0)
         self.assertEqual(bst.inorder_list(), [10])
         self.assertEqual(bst.preorder_list(), [10])
-        #self.assertTrue(bst.delete(10))
-        #self.assertEqual(bst.tree_height(), None)
+        self.assertTrue(bst.delete(10))
+
 
     def test_2(self):
         bst = BinarySearchTree()
+        self.assertFalse(bst.delete(5))
         self.assertEqual(bst.tree_height(), None)
         self.assertEqual(bst.find_min(), None)
         self.assertEqual(bst.find_max(), None)
@@ -51,6 +53,40 @@ class TestLab4(unittest.TestCase):
         self.assertFalse(bst.search(8))
         bst.insert(4, 'hehe stuff')
         self.assertEqual(bst.tree_height(), 2)
+        self.assertTrue(bst.delete(4))
+        self.assertTrue(bst.delete(13))
+        self.assertFalse(bst.delete(11))
+        self.assertFalse(bst.delete(5))
+        self.assertFalse(bst.delete(15))
+        self.assertTrue(bst.delete(9))
+        self.assertTrue(bst.delete(10))
+
+    def test_3(self):
+        bst = BinarySearchTree()
+        self.assertFalse(bst.delete(5))
+        bst.insert(10, 'stuff')
+        self.assertTrue(bst.delete(10))
+        bst.insert(10, 'stuff')
+        bst.insert(9, 'stuff')
+        bst.insert(12, 'stuff')
+        self.assertTrue(bst.delete(12))
+        self.assertTrue(bst.delete(9))
+        bst.insert(9, 'stuff')
+        self.assertTrue(bst.delete(10))
+        bst.insert(12, 'stuff')
+        bst.insert(14, 'stuff')
+        self.assertTrue(bst.delete(9))
+        bst.insert(4, 'stuff')
+        bst.insert(5, 'stuff')
+        self.assertTrue(bst.delete(12))
+        self.assertTrue(bst.delete(4))
+
+
+
+
+
+
+
 
 
 
