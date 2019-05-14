@@ -1,3 +1,14 @@
+#
+#Kelsey Deuth
+#kdeuth@calpoly.edu
+#06/14/19
+#
+#Project 3
+#Section 11
+#Tests for functions in huffman.py
+#
+
+
 import unittest
 import filecmp
 import subprocess
@@ -21,9 +32,9 @@ class TestList(unittest.TestCase):
         self.assertEqual(right.freq, 16)
         self.assertEqual(right.char, 100)
 
-    # def test_create_header(self):
-    #     freqlist = cnt_freq("file2.txt")
-    #     self.assertEqual(create_header(freqlist), "97 2 98 4 99 8 100 16 102 2")
+    def test_create_header(self):
+        freqlist = cnt_freq("file2.txt")
+        self.assertEqual(create_header(freqlist), "97 2 98 4 99 8 100 16 102 2")
 
     # def test_create_code(self):
     #     freqlist = cnt_freq("file2.txt")

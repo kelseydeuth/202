@@ -1,3 +1,15 @@
+#
+#Kelsey Deuth
+#kdeuth@calpoly.edu
+#06/14/19
+#
+#Project 3
+#Section 11
+#Creates a huffman tree and compresses to a file
+#
+
+
+
 class HuffmanNode:
     def __init__(self, char, freq):
         self.char = char   # stored as an integer - the ASCII character code value
@@ -80,20 +92,35 @@ def create_code(node):
     as the index into the arrary, with the resulting Huffman code for that character stored at that location"""
     str = "" * 256
     if node is not None:
-        str[char] = node.char
-
+        if node.left is None and node.right:
+            node.char = str[char]
 
 
 
 def create_header(freqs):
     """Input is the list of frequencies. Creates and returns a header for the output file
     Example: For the frequency list asscoaied with "aaabbbbcc, would return “97 3 98 4 99 2” """
+    s = ''
+    counter = 0
+    for freq in freqs:
+        if freq != 0:
+            s = s + str(counter) + " " + str(freq) + " "
+        counter += 1
+    s = s.strip()
+    return s
 
 
 def huffman_encode(in_file, out_file):
     """Takes inout file name and output file name as parameters
     Uses the Huffman coding process on the text from the input file and writes encoded text to output file
     Take not of special cases - empty file and file with only one unique character"""
+    header = create_header(freqs)
+
+
+
+
+
+
 
 
 
