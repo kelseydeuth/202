@@ -9,7 +9,6 @@
 #
 
 
-
 class HuffmanNode:
     def __init__(self, char, freq):
         self.char = char   # stored as an integer - the ASCII character code value
@@ -89,12 +88,19 @@ def create_huff_tree(char_freq):
 
 def create_code(node):
     """Returns an array (Python list) of Huffman codes. For each character, use the integer ASCII representation 
-    as the index into the arrary, with the resulting Huffman code for that character stored at that location"""
-    str = "" * 256
-    if node is not None:
-        if node.left is None and node.right:
-            node.char = str[char]
+    as the index into the array, with the resulting Huffman code for that character stored at that location"""
+    s = [""] * 256
+    create_code_help(node, s, "")
+    return s
 
+
+def create_code_help(node, s, code):
+    if node.left is None and node.right is None:
+        s[node.char] = code
+    if node.left is not None:
+        create_code_help(node.left, s, code + "0")
+    if node.right is not None:
+        create_code_help(node.right, s, code + "1")
 
 
 def create_header(freqs):
@@ -114,13 +120,21 @@ def huffman_encode(in_file, out_file):
     """Takes inout file name and output file name as parameters
     Uses the Huffman coding process on the text from the input file and writes encoded text to output file
     Take not of special cases - empty file and file with only one unique character"""
+    freqs = cnt_freq(in_file)
+    inf = open(in_file, "r")
     header = create_header(freqs)
-
-
-
-
-
-
-
+    node = create_huff_tree(freqs)
+    codes = create_code(node)
+    body = ""
+    print(codes[97:])
+    for line in inf:
+        for char in line:
+            print(codes[ord(char)])
+            body += codes[ord(char)]
+    of = open(out_file, "w", newline="")
+    of.write(header + "\n")
+    of.write(body)
+    inf.close()
+    of.close()
 
 
