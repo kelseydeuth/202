@@ -15,6 +15,7 @@ from huffman import *
 
 
 class TestList(unittest.TestCase):
+
     def test_cnt_freq(self):
         freqlist	= cnt_freq("file2.txt")
         anslist = [2, 4, 8, 16, 0, 2, 0] 
@@ -42,13 +43,31 @@ class TestList(unittest.TestCase):
         codes = create_code(hufftree)
         self.assertEqual(codes[ord('d')], '1')
         self.assertEqual(codes[ord('a')], '0000')
-        self.assertEqual(codes[ord('f')], '0001')
 
     def test_01_textfile(self):
         huffman_encode("file1.txt", "file1_out.txt")
         # capture errors by running 'diff' on your encoded file with a *known* solution file
         err = subprocess.call("diff -wb file1_out.txt file1_soln.txt", shell = True)
         self.assertEqual(err, 0)
+
+    def test_02_textfile(self):
+        huffman_encode("file2.txt", "file2_out.txt")
+        # capture errors by running 'diff' on your encoded file with a *known* solution file
+        err = subprocess.call("diff -wb file2_out.txt file2_soln.txt", shell = True)
+        self.assertEqual(err, 0)
+
+    def test_03_textfile(self):
+        huffman_encode("declaration.txt", "declaration_soln.txt")
+        # capture errors by running 'diff' on your encoded file with a *known* solution file
+        err = subprocess.call("diff -wb declaration.txt declaration_soln.txt", shell = True)
+        self.assertEqual(err, 0)
+
+    def test_04_textfile(self):
+        huffman_encode("multiline.txt", "multiline_soln.txt")
+        # capture errors by running 'diff' on your encoded file with a *known* solution file
+        err = subprocess.call("diff -wb multiline.txt multiline_soln.txt", shell = True)
+        self.assertEqual(err, 0)
+
 
 
 if __name__ == '__main__': 

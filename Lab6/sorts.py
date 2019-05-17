@@ -6,7 +6,8 @@
 #Lab6
 #Section 11
 #This code preforms an insertion sort and selection sort
-#
+
+
 import random
 import time
 
@@ -30,18 +31,20 @@ def insertion_sort(list):
     for num in range(1, len(list)):
         k = list[num]
         j = num - 1
-        while True:
-            if j >= 0:
-                c += 1
-                if k < list[j]:
-                    list[j + 1] = list[j]
-                    j -= 1
-            else:
-                break
+
+        if j >= 0:
+            c += 1
+            if k < list[j]:
+                list[j + 1] = list[j]
+                j -= 1
+                # else:
+                #     break
+        # else:
+        #     break
         list[j + 1] = k
     return c
    
-#30-45, 61
+#29-44
 
 
 # def main():
