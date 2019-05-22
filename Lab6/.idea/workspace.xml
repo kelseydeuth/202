@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae2b0d81-8fdf-485c-8cf8-c6401b9436e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project3/.coverage" beforeDir="false" afterPath="$PROJECT_DIR$/../Project3/.coverage" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project3/declaration_soln.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project3/declaration_soln.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project3/huffman_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Project3/huffman_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project3/multiline_soln.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Project3/multiline_soln.txt" afterDir="false" />
-    </list>
+    <list default="true" id="ae2b0d81-8fdf-485c-8cf8-c6401b9436e3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Downloads/sorts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+            <state relative-caret-position="459">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -32,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/sorts_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+            <state relative-caret-position="85">
+              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -54,8 +47,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Downloads/sorts_tests.py" />
         <option value="$USER_HOME$/Downloads/sorts.py" />
+        <option value="$USER_HOME$/Downloads/sorts_tests.py" />
       </list>
     </option>
   </component>
@@ -190,8 +183,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Downloads/sorts_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="85">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -200,8 +193,8 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/sorts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        <state relative-caret-position="459">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
