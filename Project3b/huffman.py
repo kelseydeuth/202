@@ -161,15 +161,15 @@ def huffman_decode(encoded_file, decode_file):
     inf.close()
     of.close()
 
-    
+
 def create_code_h(tree):
     s = ""
     if tree.left == None and tree.right == None:
         s[node.char] = code
     if tree.left != None:
-        create_code_h(tree.left, s, code + "0")
+        create_code_h(tree.left)
     if tree.right != None:
-        create_code_h(tree.right, s, code + "1")
+        create_code_h(tree.right)
     return s
 
 
@@ -187,6 +187,11 @@ def parse_header(header_string):
         else:
             counter += 1
     return s
+
+
+
+
+
 
 
 
