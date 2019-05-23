@@ -150,17 +150,27 @@ def huffman_encode(in_file, out_file):
 
 def huffman_decode(encoded_file, decode_file):
     inf = open(encoded_file, "r")
-    #  get header here
+    rest = inf.readlines()
+    header = rest[0]
+    rest.pop(0)
     freqs = parse_header(header)
+    tree = create_huff_tree(freqs)
     of = open(decode_file, "w", newline="")
-    counter = 0
-    for f in freqs:
-        if f != 0:
-            a = chr(f)
-            of.write(a)
-            counter += 1
+    a = create_code_h(tree)
+    of.write(a)
     inf.close()
     of.close()
+
+    
+def create_code_h(tree):
+    s = ""
+    if tree.left == None and tree.right == None:
+        s[node.char] = code
+    if tree.left != None:
+        create_code_h(tree.left, s, code + "0")
+    if tree.right != None:
+        create_code_h(tree.right, s, code + "1")
+    return s
 
 
 def parse_header(header_string):
@@ -176,7 +186,8 @@ def parse_header(header_string):
             counter += 1
         else:
             counter += 1
-    return create_huff_tree(s)
+    return s
+
 
 
 
