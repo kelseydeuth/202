@@ -1,4 +1,4 @@
-class HuffmanNode:
+iclass HuffmanNode:
     def __init__(self, char, freq):
         self.char = char   # stored as an integer - the ASCII character code value
         self.freq = freq   # the freqency associated with the node
@@ -156,20 +156,24 @@ def huffman_decode(encoded_file, decode_file):
     freqs = parse_header(header)
     tree = create_huff_tree(freqs)
     of = open(decode_file, "w", newline="")
-    a = create_code_h(tree)
+    a = create_code_h(tree, encoded_file)
     of.write(a)
     inf.close()
     of.close()
 
 
-def create_code_h(tree):
+def create_code_h(tree, encoded_file):
+    inf = open(encoded_file, "r")
+    rest = inf.readlines()
+    rest.pop(0)
     s = ""
-    if tree.left == None and tree.right == None:
-        s[node.char] = code
-    if tree.left != None:
-        create_code_h(tree.left)
-    if tree.right != None:
-        create_code_h(tree.right)
+    for num in rest:
+        if num == 0:
+            create_code_h(tree.left)
+        if num == 1:
+            create_code_h(tree.right)
+        if tree.left == None and tree.right == None:
+            s =+ num
     return s
 
 
@@ -187,11 +191,6 @@ def parse_header(header_string):
         else:
             counter += 1
     return s
-
-
-
-
-
 
 
 
