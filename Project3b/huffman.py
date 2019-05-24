@@ -58,7 +58,6 @@ def combine(a, b):
     return new
 
 
-
 def cnt_freq(filename):
     """Opens a text file with a given file name (passed as a string) and counts the 
     frequency of occurrences of all the characters within that file"""
@@ -137,27 +136,27 @@ def huffman_encode(in_file, out_file):
     Take not of special cases - empty file and file with only one unique character"""
     freqs = cnt_freq(in_file)
     inf = open(in_file, "r")
-    ln = inf.readline()
+    # ln = inf.readline()
+    # of = open(out_file, "w", newline="")
+    # if len(ln) == 0:
+    #     # of.write()
+    #     of.close()
+    #     inf.close()
+    # else:
+    header = create_header(freqs)
+    node = create_huff_tree(freqs)
+    codes = create_code(node)
+    body = ""
+    #print(codes[97:])
+    for line in inf:
+        for char in line:
+            # print(codes[ord(char)])
+            body += codes[ord(char)]
     of = open(out_file, "w", newline="")
-    if len(ln) == 0:
-        # of.write()
-        of.close()
-        inf.close()
-    else:
-        header = create_header(freqs)
-        node = create_huff_tree(freqs)
-        codes = create_code(node)
-        body = ""
-        #print(codes[97:])
-        for line in inf:
-            for char in line:
-                # print(codes[ord(char)])
-                body += codes[ord(char)]
-        of = open(out_file, "w", newline="")
-        of.write(header + "\n")
-        of.write(body)
-        inf.close()
-        of.close()
+    of.write(header + "\n")
+    of.write(body)
+    inf.close()
+    of.close()
 
 
 def huffman_decode(encoded_file, decode_file):
@@ -203,11 +202,6 @@ def parse_header(header_string):
         else:
             counter += 1
     return s
-
-
-
-
-
 
 
 
