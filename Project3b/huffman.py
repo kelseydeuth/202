@@ -1,4 +1,4 @@
-iclass HuffmanNode:
+class HuffmanNode:
     def __init__(self, char, freq):
         self.char = char   # stored as an integer - the ASCII character code value
         self.freq = freq   # the freqency associated with the node
@@ -11,7 +11,7 @@ iclass HuffmanNode:
         elif self.freq > other.freq:
             return False
         return self.char < other.char
-        #return comes_before(self, other)
+        return comes_before(self, other)
 
     def __cmp__(self, other):
         return comes_before(self, other)
@@ -28,14 +28,19 @@ iclass HuffmanNode:
 
 def comes_before(a, b):
     """Returns True if tree rooted at node a comes before tree rooted at node b, False otherwise"""
+    # if a.freq < b.freq:
+    #     return True
+    # elif b.freq > a.freq:
+    #     return False
+    # elif a.char > b.char:
+    #     return False
+    # elif a.char < b.char:
+    #     return True
     if a.freq < b.freq:
         return True
-    elif b.freq > a.freq:
+    elif a.freq > b.freq:
         return False
-    elif a.char > b.char:
-        return False
-    elif a.char < b.char:
-        return True
+    return a.char < b.char
 
 
 def combine(a, b):
@@ -44,7 +49,7 @@ def combine(a, b):
     The new node's char value will be the lesser of the a and b char ASCII values
     take the minimum ASCII character regarless of the freq"""
     new = HuffmanNode(min(a.char, b.char), a.freq + b.freq)
-    if comes_before(a, b):
+    if a < b:
         new.left = a
         new.right = b
     else:
@@ -53,12 +58,15 @@ def combine(a, b):
     return new
 
 
+
 def cnt_freq(filename):
     """Opens a text file with a given file name (passed as a string) and counts the 
     frequency of occurrences of all the characters within that file"""
     freqs = [0] * 256
     fp = open(filename, 'r')
     for line in fp:
+    #     if len(line) == 0:
+    #         return huffman_encode(filename, out_file)
         for char in line:
             num = ord(char)
             freqs[num] += 1
@@ -77,17 +85,14 @@ def create_huff_tree(char_freq):
             lst.append(new)
         counter += 1
     #lst.sort()
-
     while len(lst) != 1:  #when it is the last one, that's the root!
         lst.sort()
-
         #print([(k.char, k.freq) for k in lst])
         #left = lst.pop(0)
         #right = lst.pop(0)
         left = lst[0]
         right = lst[1]
         lst = lst[2:]
-
         new = combine(left, right)
         lst.append(new)
         #print(new)
@@ -132,20 +137,27 @@ def huffman_encode(in_file, out_file):
     Take not of special cases - empty file and file with only one unique character"""
     freqs = cnt_freq(in_file)
     inf = open(in_file, "r")
-    header = create_header(freqs)
-    node = create_huff_tree(freqs)
-    codes = create_code(node)
-    body = ""
-    #print(codes[97:])
-    for line in inf:
-        for char in line:
-            # print(codes[ord(char)])
-            body += codes[ord(char)]
+    ln = inf.readline()
     of = open(out_file, "w", newline="")
-    of.write(header + "\n")
-    of.write(body)
-    inf.close()
-    of.close()
+    if len(ln) == 0:
+        # of.write()
+        of.close()
+        inf.close()
+    else:
+        header = create_header(freqs)
+        node = create_huff_tree(freqs)
+        codes = create_code(node)
+        body = ""
+        #print(codes[97:])
+        for line in inf:
+            for char in line:
+                # print(codes[ord(char)])
+                body += codes[ord(char)]
+        of = open(out_file, "w", newline="")
+        of.write(header + "\n")
+        of.write(body)
+        inf.close()
+        of.close()
 
 
 def huffman_decode(encoded_file, decode_file):
@@ -173,7 +185,7 @@ def create_code_h(tree, encoded_file):
         if num == 1:
             create_code_h(tree.right)
         if tree.left == None and tree.right == None:
-            s =+ num
+            s += num
     return s
 
 
@@ -191,6 +203,11 @@ def parse_header(header_string):
         else:
             counter += 1
     return s
+
+
+
+
+
 
 
 
