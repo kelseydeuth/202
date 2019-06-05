@@ -22,18 +22,18 @@ class HashTable:
         # self.table_size += 1
         if self.hash_table[index] is None:
             self.hash_table[index] = (key, [value])
+            self.num_items += 1
         elif self.hash_table[index] == index:
             self.hash_table[index][1].append(value)
         else:
             i = 1
             while self.hash_table[index] is not None and self.hash_table[index][0] != key:
-                new_index = (index + (i ** 2)) % self.table_size
+                new_index = (index + (i ** 2)) # % self.table_size
                 i += 1
                 if self.hash_table[new_index][0] is None:
-                    self.hash_table[new_index][0] = key
-                    self.hash_table[new_index][1] = [value]
+                    self.hash_table[new_index][0] = (key, [value])
                     self.num_items += 1
-                if self.hash_table[new_index][0] == key:
+                elif self.hash_table[new_index][0] == key:
                     self.hash_table[index][1].append(value)
                 if new_index > len(self.hash_table):
                     index = new_index - len(self.hash_table)
@@ -62,20 +62,18 @@ class HashTable:
 
     def in_table(self, key):
         """ Returns True if key is in an entry of the hash table, False otherwise."""
-        i = self.hash_table(key)
         for n in range(0, self.table_size):
-            if i == n:
+            if key == n:
                 return True
         return False
 
     def get_index(self, key):
         """ Returns the index of the hash table entry containing the provided key. 
         If there is not an entry with the provided key, returns None."""
-        i = self.hash_table(key)
-        if self.in_table(i) is False:
+        if self.in_table(key) is False:
             return None
         for n in range(0, self.table_size):
-            if i == n:
+            if key == n:
                 self.get_index(n)
                 return n
 
@@ -85,7 +83,7 @@ class HashTable:
         counter = 0
         for n in self.hash_table:
             if n is None:
-                break
+                continue
             elif n[counter] is not None:
                 s.append(n[counter])
                 counter += 1
