@@ -23,12 +23,12 @@ class HashTable:
         if self.hash_table[index] is None:
             self.hash_table[index] = (key, [value])
             self.num_items += 1
-        elif self.hash_table[index] == index:
+        elif self.hash_table[index] == key:
             self.hash_table[index][1].append(value)
         else:
             i = 1
             while self.hash_table[index] is not None and self.hash_table[index][0] != key:
-                new_index = (index + (i ** 2)) # % self.table_size
+                new_index = (index + (i ** 2)) % self.table_size
                 i += 1
                 if self.hash_table[new_index][0] is None:
                     self.hash_table[new_index][0] = (key, [value])
@@ -62,9 +62,11 @@ class HashTable:
 
     def in_table(self, key):
         """ Returns True if key is in an entry of the hash table, False otherwise."""
-        for n in range(0, self.table_size):
-            if key == n:
-                return True
+        h = self.horner_hash(key)
+        for i in range(self.table_size):
+            if self.hash_table[(h + i * i) % self.table_size]:
+                if self.hash_table[h + i * i][0] is key:
+                    return True
         return False
 
     def get_index(self, key):
