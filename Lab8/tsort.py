@@ -30,17 +30,17 @@ def tsort(vertices):
 
         if vertices[i + 1] not in al:
             al[vertices[i + 1]] = [0, [], str(vertices[i + 1])]
-        al[vertices[i]] [1].append(vertices[i + 1])
-        al[vertices[i + 1]] [0] += 1
+        al[vertices[i]][1].append(vertices[i + 1])
+        al[vertices[i + 1]][0] += 1
     for i in el:
-        if al[i] [0] == 0:
+        if al[i][0] == 0:
             s.push(al[i])
             del al[i]
     while not s.is_empty():
         v = s.pop()
         for i in v[1]:
-            al[i] [0] -= 1
-            if al[i] [0] == 0:
+            al[i][0] -= 1
+            if al[i][0] == 0:
                 s.push(al[i])
                 del al[i]
         outstr += v[2] + "\n"
