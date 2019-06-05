@@ -13,6 +13,14 @@ class Concordance:
         If file does not exist, raise FileNotFoundError"""
         # get rid of new line character
         # for line in lines
+        self.stop_table = HashTable(191)
+        try:
+            fp = open(filename, 'r')
+        except FileNotFoundError:
+            raise FileNotFoundError
+        for lines in fp:
+            for line in lines:
+                self.stop_table.insert(line)
 
     def load_concordance_table(self, filename):
         """ Read words from input text file (filename) and insert them into the concordance hash table, 
@@ -20,6 +28,12 @@ class Concordance:
         Do not include duplicate line numbers (word appearing on same line more than once, just one entry for that line)
         Starting size of hash table should be 191: self.concordance_table = HashTable(191)
         If file does not exist, raise FileNotFoundError"""
+        self.concordance_table = HashTable(191)
+        try:
+            fp = open(filename, 'r')
+        except FileNotFoundError:
+            raise FileNotFoundError
+
 
     def write_concordance(self, filename):
         """ Write the concordance entries to the output file(filename)

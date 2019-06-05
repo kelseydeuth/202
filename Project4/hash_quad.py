@@ -16,28 +16,49 @@ class HashTable:
         If load factor is greater than 0.5 after an insertion, hash table size should be increased (doubled + 1)."""
         index = self.horner_hash(key)
         # original = index
-        for i in range(self.table_size):
-            if self.hash_table[(index + i * i) % self.table_size] is None:
-                self.hash_table[(index + (i * i)) % self.table_size] = (index, value)
-            self.table_size += 1
-            break
+        # for i in range(self.table_size()):
+        # if self.hash_table[(index + i * i) % self.table_size] is None:
+        #     self.hash_table[(index + (i * i)) % self.table_size] = (index, value)
+        # self.table_size += 1
+        if self.hash_table[index] is None:
+            self.hash_table[index] = (key, [value])
+        elif self.hash_table[index] == index:
+            self.hash_table[index][1].append(value)
+        else:
+            i = 1
+            while self.hash_table[index] is not None and self.hash_table[index][0] != key:
+                new_index = (index + (i ** 2)) % self.table_size
+                i += 1
+                if self.hash_table[new_index][0] is None:
+                    self.hash_table[new_index][0] = key
+                    self.hash_table[new_index][1] = [value]
+                    self.num_items += 1
+                if self.hash_table[new_index][0] == key:
+                    self.hash_table[index][1].append(value)
+                if new_index > len(self.hash_table):
+                    index = new_index - len(self.hash_table)
         lf = self.get_load_factor()
         if lf > 0.5:
+            self.size_up()
+
+    def size_up(self):
             new_table_size = 2 * self.table_size + 1
             new_table = [None] * new_table_size
-            for i in self.hash_table:
-                new_table.self.insert(i)
+            for key, value in self.hash_table:
+                new_table.self.insert(key, value)
             self.table_size = new_table_size
 
     def horner_hash(self, key):
         """ Compute and return an integer from 0 to the (size of the hash table) - 1
         Compute the hash value by using Horner’s rule, as described in project specification."""
-        counter = 0
+        ans = 0
         n = min(len(key), 8)
-        math = (31 ** (n - 1 - i))
-
-        ans = math % self.table_size
-        return ans
+        for i in range(n):
+            math = (31 ** (n - 1 - i))
+            k = ord(key[i])
+            solution = k * math
+            ans += solution
+        return ans % self.table_size
 
     def in_table(self, key):
         """ Returns True if key is in an entry of the hash table, False otherwise."""
@@ -61,9 +82,13 @@ class HashTable:
     def get_all_keys(self):
         """ Returns a Python list of all keys in the hash table."""
         s = []
-        for n in HashTable:
-            if n is not None:
-                s.append(n)
+        counter = 0
+        for n in self.hash_table:
+            if n is None:
+                break
+            elif n[counter] is not None:
+                s.append(n[counter])
+                counter += 1
         return s
 
     def get_value(self, key):
