@@ -20,33 +20,28 @@ class HashTable:
         # if self.hash_table[(index + i * i) % self.table_size] is None:
         #     self.hash_table[(index + (i * i)) % self.table_size] = (index, value)
         # self.table_size += 1
-        if self.hash_table[index] is None:
-            self.hash_table[index] = (key, [value])
-            self.num_items += 1
-        elif self.hash_table[index] == key:
-            self.hash_table[index][1].append(value)
-        else:
-            i = 1
-            while self.hash_table[index] is not None and self.hash_table[index][0] != key:
-                new_index = (index + (i ** 2)) % self.table_size
-                i += 1
-                if self.hash_table[new_index][0] is None:
-                    self.hash_table[new_index][0] = (key, [value])
-                    self.num_items += 1
-                elif self.hash_table[new_index][0] == key:
-                    self.hash_table[index][1].append(value)
-                if new_index > len(self.hash_table):
-                    index = new_index - len(self.hash_table)
-        lf = self.get_load_factor()
-        if lf > 0.5:
+        h = self.horner_hash(key)
+        for i in range(self.table_size):
+            if self.hash_table[(h + i * i) % self.table_size] is None:
+                self.hash_table[(h + i * i) % self.table_size] = [key, [value]]
+                self.num_items += 1
+                break
+            elif self.hash_table[(h + i * i) % self.table_size][0] is key:
+                if value not in self.hash_table[(h + i * i) % self.table_size][1]:
+                    self.hash_table[(h + i * i) % self.table_size][1].append(value)
+                    return
+
+        if self.get_load_factor() > .5:
             self.size_up()
 
     def size_up(self):
-            new_table_size = 2 * self.table_size + 1
-            new_table = [None] * new_table_size
-            for key, value in self.hash_table:
-                new_table.self.insert(key, value)
-            self.table_size = new_table_size
+        l = [x for x in self.hash_table if x is not None]
+        self.num_items = 0
+        self.table_size = 2 * self.table_size + 1
+        self.hash_table = [None] * self.table_size
+        for value in l:
+            for x in value[1]:
+                self.insert(value[0], x)
 
     def horner_hash(self, key):
         """ Compute and return an integer from 0 to the (size of the hash table) - 1
@@ -72,34 +67,28 @@ class HashTable:
     def get_index(self, key):
         """ Returns the index of the hash table entry containing the provided key. 
         If there is not an entry with the provided key, returns None."""
-        if self.in_table(key) is False:
-            return None
-        for n in range(0, self.table_size):
-            if key == n:
-                self.get_index(n)
-                return n
+        h = self.horner_hash(key)
+        for i in range(self.table_size):
+            if self.hash_table[(h + i * i) % self.table_size]:
+                if self.hash_table[h + i * i][0] is key:
+                    return h
+        return None
 
     def get_all_keys(self):
         """ Returns a Python list of all keys in the hash table."""
         s = []
-        counter = 0
         for n in self.hash_table:
-            if n is None:
-                continue
-            elif n[counter] is not None:
-                s.append(n[counter])
-                counter += 1
+            if n is not None:
+                s.append(n[0])
         return s
 
     def get_value(self, key):
         """ Returns the value (list of line numbers) associated with the key. 
         If key is not in hash table, returns None."""
-        n = self.get_index(key)
-        if n is None:
-            return None
-        else:
-            ans = self.hash_table[n][1]  # gets VALUE
-        return ans
+
+        if self.get_index(key):
+            return self.hash_table[self.get_index(key)][1]
+        return None
 
     def get_num_items(self):
         """ Returns the number of entries (words) in the table."""
