@@ -37,19 +37,20 @@ class Concordance:
             raise FileNotFoundError
         counter = 1
         for line in fp:
+            line = line.replace('-', " ")
             for key in line.split():
+                num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+                is_num = False
                 key = key.replace("\n", '')
-                key = key.replace('-', " ")
                 key = key.replace(',', "")
                 key = key.replace("'", '')
+                key = key.replace('"', '')
                 key = key.replace('.', '')
-                key = key.replace("''", "")
-                key = key.replace("", "")
                 key = key.lower()
-                # if " " in key:
-                #     key = ' '.split(key)
-                print(key)
-                if key not in self.stop_table.hash_table:
+                for item in num:
+                    if item in key:
+                        is_num = True
+                if key not in self.stop_table.hash_table and is_num is False:
                     self.concordance_table.insert(key, counter)
             counter += 1
         fp.close()
@@ -57,14 +58,13 @@ class Concordance:
     def write_concordance(self, filename):
         """ Write the concordance entries to the output file(filename)
         See sample output files for format."""
-        s = ''
         fp = open(filename, 'w')
         for n in self.concordance_table.hash_table:
             if n is not None:
                 if n[0] not in self.stop_table.hash_table:
-                    n = str(n)
-                    n = n.split()
-                    fp.write(n[0] + ":" + n[1] + "\n")
+                    n[1] = [str(x) for x in n[1]]
+                    print(n[0] + ":" + ','.join(n[1]) + "\n")
+                    fp.write(n[0] + " : " + ','.join(n[1]) + "\n")
         fp.close()
 
 
