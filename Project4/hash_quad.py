@@ -30,7 +30,6 @@ class HashTable:
                 if value not in self.hash_table[(h + i * i) % self.table_size][1]:
                     self.hash_table[(h + i * i) % self.table_size][1].append(value)
                     return
-
         if self.get_load_factor() > .5:
             self.size_up()
 
@@ -85,7 +84,6 @@ class HashTable:
     def get_value(self, key):
         """ Returns the value (list of line numbers) associated with the key. 
         If key is not in hash table, returns None."""
-
         if self.get_index(key):
             return self.hash_table[self.get_index(key)][1]
         return None
